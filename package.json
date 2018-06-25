@@ -1,0 +1,25 @@
+{
+  "name": "wheels",
+  "version": "0.0.1",
+  "description": "Car sharing dapp",
+  "main": "app/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1na/wheels.git"
+  },
+  "contributors": [
+    "Omid Najaee",
+    "Sina Mahmoodi"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s1na/wheels/issues"
+  },
+  "homepage": "https://github.com/s1na/wheels#readme"
+}
