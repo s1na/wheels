@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "contracts:build": "truffle compile",
+    "contracts:test": "truffle test"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/s1na/wheels/issues"
   },
-  "homepage": "https://github.com/s1na/wheels#readme"
+  "homepage": "https://github.com/s1na/wheels#readme",
+  "devDependencies": {
+    "truffle": "^4.1.12"
+  }
 }
