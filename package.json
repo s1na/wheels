@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "contracts:build": "truffle compile",
-    "contracts:test": "truffle test"
+    "contracts:test": "truffle test",
+    "contracts:lint": "solium -d contracts"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/s1na/wheels#readme",
   "devDependencies": {
+    "solium": "^1.1.7",
     "truffle": "^4.1.12"
   }
 }
