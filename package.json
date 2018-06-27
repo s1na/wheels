@@ -29,9 +29,13 @@
   },
   "homepage": "https://github.com/s1na/wheels#readme",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "openzeppelin-solidity": "^1.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.3"
+    "react-hot-loader": "^4.3.3",
+    "truffle-contract": "^3.0.6",
+    "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
