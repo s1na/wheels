@@ -11,7 +11,10 @@ class App extends Component {
 
     this.state = {
       web3: null,
-      offersCount: null
+      offersCount: null,
+      inst: null,
+      accounts: null,
+      hash: ''
     }
   }
 
@@ -34,9 +37,23 @@ class App extends Component {
     let l = await inst.getOffersCount.call()
 
     this.setState({
+      accounts,
+      inst,
       offersCount: l.toString()
     })
   }
+
+  async onSubmit(e) {
+    e.preventDefault()
+    let tx = await this.state.inst.newOffer(this.state.hash, { from: this.state.accounts[0] })
+  }
+
+  onChange(e) {
+    this.setState({
+      hash: e.target.value
+    })
+  }
+
   render() {
     let p = (<p>Connecting</p>)
     if (this.state.offersCount !== null) {
@@ -47,6 +64,10 @@ class App extends Component {
       <div>
         <h2>Wheels</h2>
         { p }
+        <form onSubmit={(e) => this.onSubmit(e)}>
+          <input type="text" defaultValue="Hash" onChange={(e) => this.onChange(e)} />
+          <input type="submit" value="submit" />
+        </form>
       </div>
     )
   }
