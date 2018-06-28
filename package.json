@@ -30,6 +30,7 @@
   "homepage": "https://github.com/s1na/wheels#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "ipfs-api": "^22.1.1",
     "openzeppelin-solidity": "^1.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
