@@ -45,6 +45,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "ipfs-api": "^22.1.1",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "openzeppelin-solidity": "^1.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -58,8 +60,8 @@
     "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-mobx": "^1.0.3",
     "babel-preset-flow": "^6.23.0",
+    "babel-preset-mobx": "^1.0.3",
     "babel-preset-react": "^6.24.1",
     "flow-bin": "^0.75.0",
     "html-webpack-plugin": "^4.0.0-alpha",

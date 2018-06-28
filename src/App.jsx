@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import contract from 'truffle-contract'
-
 import WheelsContract from '../build/contracts/Wheels.json'
 import { getWeb3 } from './utils'
+import { observer } from 'mobx-react'
 
+@observer
 class App extends Component {
   constructor (props) {
     super(props)
@@ -60,6 +61,7 @@ class App extends Component {
       p = (<p>{ this.state.offersCount } Offers</p>)
     }
 
+    console.log('props', this.props);
     return (
       <div>
         <h2>Wheels</h2>
