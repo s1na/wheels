@@ -11,9 +11,11 @@
     "test": "jest",
     "build": "webpack",
     "serve": "webpack-serve --config webpack.config.js",
+    "lint": "standard",
     "contracts:build": "truffle compile",
     "contracts:test": "truffle test",
-    "contracts:lint": "solium -d contracts"
+    "contracts:lint": "solium -d contracts",
+    "contracts:deploy": "truffle migrate --reset --compile-all"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,10 @@
     "url": "https://github.com/s1na/wheels/issues"
   },
   "homepage": "https://github.com/s1na/wheels#readme",
+  "standard": {
+    "envs": ["mocha"],
+    "globals": ["assert", "contract", "artifacts"]
+  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "ipfs-api": "^22.1.1",
@@ -45,6 +51,7 @@
     "babel-preset-react": "^6.24.1",
     "html-webpack-plugin": "^4.0.0-alpha",
     "solium": "^1.1.7",
+    "standard": "^11.0.1",
     "truffle": "^4.1.12",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",

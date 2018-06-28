@@ -13,7 +13,7 @@ contract('Wheels', (accounts) => {
   })
 
   it('should add new offer', async () => {
-    let tx = await inst.newOffer('0xf017112200d511ee9a3ab4e52e8e2bc40fd2669d9c44b89164107e9898cd9698c1506c5aa', { from: accounts[0] })
+    await inst.newOffer('0xf017112200d511ee9a3ab4e52e8e2bc40fd2669d9c44b89164107e9898cd9698c1506c5aa', { from: accounts[0] })
     let l = await inst.getOffersCount.call()
     assert.equal(l, 1)
 
