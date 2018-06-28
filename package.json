@@ -31,8 +31,15 @@
   },
   "homepage": "https://github.com/s1na/wheels#readme",
   "standard": {
-    "envs": ["mocha"],
-    "globals": ["assert", "contract", "artifacts"]
+    "parser": "babel-eslint",
+    "envs": [
+      "mocha"
+    ],
+    "globals": [
+      "assert",
+      "contract",
+      "artifacts"
+    ]
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -46,6 +53,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
