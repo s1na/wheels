@@ -2,7 +2,8 @@
   "presets": [
     "env",
     "react",
-    "mobx"
+    "mobx",
+    "flow"
   ],
   "plugins": ["react-hot-loader/babel"]
 }
