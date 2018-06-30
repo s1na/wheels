@@ -1,0 +1,65 @@
+version: 2
+
+jobs:
+  unit-test:
+    docker:
+      - image: circleci/node:9
+      - image: trufflesuite/ganache-cli:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - node-modules-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - node-modules-
+
+      - run:
+          name: "Install global packages"
+          command: |
+            yarn global add truffle
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-modules-{{ checksum "yarn.lock" }}
+        
+      - run:
+          name: "Compile contracts"
+          command: |
+            yarn contracts:build
+
+      - run:
+          name: "Test contracts"
+          command: |
+            yarn contracts:test
+
+      - run:
+          name: "Lint contracts"
+          command: |
+            yarn contracts:lint
+
+      - run:
+          name: "Test js code"
+          command: |
+            yarn test
+
+      - run:
+          name: "Lint js code"
+          command: |
+            yarn lint
+
+      - run:
+          name: "Flow analysis"
+          command: |
+            yarn flow
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - unit-test
