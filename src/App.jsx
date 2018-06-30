@@ -3,7 +3,9 @@ import { Route, Link, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import contract from 'truffle-contract'
 import { observer } from 'mobx-react'
+import { withStyles } from '@material-ui/core/styles'
 
+import NavBar from './components/NavBar'
 import Home from './components/Home'
 import OfferList from './components/OfferList'
 import NewOffer from './components/NewOffer'
@@ -55,27 +57,44 @@ class App extends Component {
   }
 
   render () {
+    let { classes } = this.props
     let p = (<p>Connecting</p>)
     if (this.state.offersCount !== null) {
       p = (<p>{ this.state.offersCount } Offers</p>)
     }
 
     return (
-      <div>
-        <h2>Wheels</h2>
-        <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/offers'>Offers</Link></li>
-          <li><Link to='/new-offer'>New Offer</Link></li>
-        </ul>
-        { p }
+      <div className={classes.root}>
+        <NavBar />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          { p }
 
-        <Route exact path='/' component={Home} />
-        <Route path='/offers' component={OfferList} />
-        <Route path='/new-offer' render={() => <NewOffer onSubmit={this.onSubmit} />} />
+          <Route exact path='/' component={Home} />
+          <Route path='/offers' component={OfferList} />
+          <Route path='/new-offer' render={() => <NewOffer onSubmit={this.onSubmit} />} />
+        </main>
       </div>
     )
   }
 }
 
-export default hot(module)(withRouter(App))
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: 430,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex'
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0 // So the Typography noWrap works
+  },
+  toolbar: theme.mixins.toolbar
+})
+
+export default hot(module)(withRouter(withStyles(styles)(App)))
