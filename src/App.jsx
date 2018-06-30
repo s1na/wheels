@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import contract from 'truffle-contract'
+import { observer } from 'mobx-react'
+
+import OfferList from './components/OfferList'
+import NewOffer from './components/NewOffer'
 import WheelsContract from '../build/contracts/Wheels.json'
 import { getWeb3 } from './utils'
-import { observer } from 'mobx-react'
 
 @observer
 class App extends Component {
@@ -14,9 +17,10 @@ class App extends Component {
       web3: null,
       offersCount: null,
       inst: null,
-      accounts: null,
-      hash: ''
+      accounts: null
     }
+
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   async componentWillMount () {
@@ -44,15 +48,8 @@ class App extends Component {
     })
   }
 
-  async onSubmit (e) {
-    e.preventDefault()
-    await this.state.inst.newOffer(this.state.hash, { from: this.state.accounts[0] })
-  }
-
-  onChange (e) {
-    this.setState({
-      hash: e.target.value
-    })
+  async onSubmit (value) {
+    await this.state.inst.newOffer(value, { from: this.state.accounts[0] })
   }
 
   render () {
@@ -61,15 +58,12 @@ class App extends Component {
       p = (<p>{ this.state.offersCount } Offers</p>)
     }
 
-    console.log('props', this.props);
     return (
       <div>
         <h2>Wheels</h2>
         { p }
-        <form onSubmit={(e) => this.onSubmit(e)}>
-          <input type='text' defaultValue='Hash' onChange={(e) => this.onChange(e)} />
-          <input type='submit' value='submit' />
-        </form>
+        <OfferList />
+        <NewOffer onSubmit={this.onSubmit} />
       </div>
     )
   }
