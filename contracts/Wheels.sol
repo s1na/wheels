@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract Wheels is Ownable {
   struct Offer {
@@ -17,7 +17,7 @@ contract Wheels is Ownable {
     }));
   }
 
-  function getOffersCount() public constant returns(uint) {
+  function getOffersCount() public view returns(uint) {
     return offers.length;
   }
 }
