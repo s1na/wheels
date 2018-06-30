@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Offer (props) {
+const Offer = (props) => {
   let { hash, owner } = props
 
   return (
@@ -10,3 +10,5 @@ export default function Offer (props) {
     </ul>
   )
 }
+
+export default Offer

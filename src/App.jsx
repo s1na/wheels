@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Route, Link, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import contract from 'truffle-contract'
 import { observer } from 'mobx-react'
 
+import Home from './components/Home'
 import OfferList from './components/OfferList'
 import NewOffer from './components/NewOffer'
 import WheelsContract from '../build/contracts/Wheels.json'
@@ -61,12 +63,19 @@ class App extends Component {
     return (
       <div>
         <h2>Wheels</h2>
+        <ul>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/offers'>Offers</Link></li>
+          <li><Link to='/new-offer'>New Offer</Link></li>
+        </ul>
         { p }
-        <OfferList />
-        <NewOffer onSubmit={this.onSubmit} />
+
+        <Route exact path='/' component={Home} />
+        <Route path='/offers' component={OfferList} />
+        <Route path='/new-offer' render={() => <NewOffer onSubmit={this.onSubmit} />} />
       </div>
     )
   }
 }
 
-export default hot(module)(App)
+export default hot(module)(withRouter(App))
