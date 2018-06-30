@@ -28,21 +28,15 @@ const NavBar = (props) => {
       <Drawer variant='permanent' anchor='left' classes={{ paper: classes.drawerPaper }}>
         <div className={classes.toolbar} />
         <List component='nav'>
-          <Link to='/' style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary='Home' />
-            </ListItem>
-          </Link>
-          <Link to='/offers' style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary='Offers' />
-            </ListItem>
-          </Link>
-          <Link to='/new-offer' style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary='New Offer' />
-            </ListItem>
-          </Link>
+          <ListItem component={Link} to='/' button>
+            <ListItemText primary='Home' />
+          </ListItem>
+          <ListItem component={Link} to='/offers' button>
+            <ListItemText primary='Offers' />
+          </ListItem>
+          <ListItem component={Link} to='/new-offer' button>
+            <ListItemText primary='New Offer' />
+          </ListItem>
         </List>
       </Drawer>
     </div>
