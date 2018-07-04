@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -6,7 +7,14 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-const Offer = (props) => {
+type Props = {
+  title: string,
+  owner: string,
+  price: string,
+  classes: Object
+}
+
+const Offer = (props: Props) => {
   let { title, owner, price, classes } = props
 
   return (

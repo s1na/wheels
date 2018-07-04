@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
@@ -12,16 +13,27 @@ import NewOffer from './components/NewOffer'
 import WheelsContract from '../build/contracts/Wheels.json'
 import { getWeb3 } from './utils'
 
+type Props = {
+  classes: Object
+}
+
+type State = {
+  web3: Object | null,
+  offersCount: number,
+  inst: Object | null,
+  accounts: Array<Object>
+}
+
 @observer
-class App extends Component {
+class App extends Component<Props, State> {
   constructor (props) {
     super(props)
 
     this.state = {
       web3: null,
-      offersCount: null,
+      offersCount: 0,
       inst: null,
-      accounts: null
+      accounts: []
     }
 
     this.onSubmit = this.onSubmit.bind(this)
@@ -38,10 +50,15 @@ class App extends Component {
   }
 
   async instantiateContract () {
-    const Wheels = contract(WheelsContract)
-    Wheels.setProvider(this.state.web3.currentProvider)
+    const web3 = this.state.web3
+    if (!web3) {
+      throw new Error('web3 not defined')
+    }
 
-    let accounts = await this.state.web3.eth.getAccounts()
+    const Wheels = contract(WheelsContract)
+    Wheels.setProvider(web3.currentProvider)
+
+    let accounts = await web3.eth.getAccounts()
     let inst = await Wheels.deployed()
     let l = await inst.getOffersCount.call()
 
@@ -52,8 +69,10 @@ class App extends Component {
     })
   }
 
-  async onSubmit (value) {
-    await this.state.inst.newOffer(value, { from: this.state.accounts[0] })
+  onSubmit = async (value) => {
+    if (this.state.inst) {
+      await this.state.inst.newOffer(value, { from: this.state.accounts[0] })
+    }
   }
 
   render () {

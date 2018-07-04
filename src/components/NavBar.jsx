@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
@@ -11,7 +12,11 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import MenuIcon from '@material-ui/icons/Menu'
 
-const NavBar = (props) => {
+type Props = {
+  classes: Object
+}
+
+const NavBar = (props: Props) => {
   let { classes } = props
   return (
     <div>

@@ -1,27 +1,37 @@
+/* @flow */
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-class NewOffer extends Component {
+type Props = {
+  onSubmit: (string) => void,
+  classes: Object
+}
+
+type State = {
+  hash: string
+}
+
+class NewOffer extends Component<Props, State> {
   constructor (props) {
     super(props)
 
     this.state = {
-      hash: null
+      hash: ''
     }
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onChange (e) {
+  onChange = (e) => {
     this.setState({
       hash: e.target.value
     })
   }
 
-  onSubmit (e) {
+  onSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit(this.state.hash)
   }
