@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-export default class NewOffer extends Component {
+class NewOffer extends Component {
   constructor (props) {
     super(props)
 
@@ -24,11 +27,50 @@ export default class NewOffer extends Component {
   }
 
   render () {
+    let { classes } = this.props
+
     return (
-      <form onSubmit={this.onSubmit}>
-        <input type='text' defaultValue='Hash' onChange={this.onChange} />
-        <input type='submit' value='submit' />
+      <form className={classes.container} noValidate autoComplete='off' onSubmit={this.onSubmit}>
+        <TextField
+          id='title'
+          label='Title'
+          className={classes.textField}
+          defaultValue='Rome2Rio'
+          onChange={this.onChange}
+          margin='normal'
+        />
+        <TextField
+          id='owner'
+          label='Owner'
+          className={classes.textField}
+          defaultValue='0xsomehash'
+          onChange={this.onChange}
+          margin='normal'
+        />
+        <TextField
+          id='price'
+          label='Price'
+          className={classes.textField}
+          defaultValue='0.1 ETH'
+          onChange={this.onChange}
+          margin='normal'
+        />
+        <Button type='submit' label='submit' color='primary' variant='raised'>Submit</Button>
       </form>
     )
   }
 }
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  }
+})
+
+export default withStyles(styles)(NewOffer)
