@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, withRouter } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import contract from 'truffle-contract'
 import { observer } from 'mobx-react'
@@ -82,7 +82,6 @@ class App extends Component {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',

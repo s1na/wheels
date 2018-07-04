@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
+import Grid from '@material-ui/core/Grid'
 
 import Offer from './Offer'
 
 export default class OfferList extends Component {
   render () {
     const offers = [
-      { hash: 'hash1', owner: 'owner1' },
-      { hash: 'hash2', owner: 'owner2' }
+      { title: 'Rome to Rio', owner: 'owner1', price: '0.1 ETH' },
+      { title: 'Bonn to Tehran', owner: 'owner2', price: '0.5 ETH' }
     ]
     const offerEls = offers.map((o) => (
-      <li key={o.hash}><Offer {...o} /></li>
+      <Grid item xs={3} key={o.hash}><Offer {...o} /></Grid>
     ))
 
     return (
-      <ul>
+      <Grid container spacing={16}>
         {offerEls}
-      </ul>
+      </Grid>
     )
   }
 }
